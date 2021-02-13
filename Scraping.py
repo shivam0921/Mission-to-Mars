@@ -1,16 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[15]:
-
-
+# Import Splinter, BeautifulSoup, and Pandas
 from splinter import Browser
 from bs4 import BeautifulSoup as soup
 import pandas as pd
 import datetime as dt
-
-
-# In[16]:
 
 
 def scrape_all():
@@ -32,9 +24,6 @@ def scrape_all():
     # Stop webdriver and return data
     browser.quit()
     return data
-
-
-# In[17]:
 
 
 def mars_news(browser):
@@ -65,9 +54,6 @@ def mars_news(browser):
     return news_title, news_p
 
 
-# In[20]:
-
-
 def featured_image(browser):
     # Visit URL
     url = 'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html'
@@ -88,14 +74,11 @@ def featured_image(browser):
 
     except AttributeError:
         return None
-     # Use the base url to create an absolute url
+
+    # Use the base url to create an absolute url
     img_url = f'https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/{img_url_rel}'
 
     return img_url
-
-
-# In[23]:
-
 
 def mars_facts():
     # Add try/except for error handling
@@ -112,10 +95,6 @@ def mars_facts():
 
     # Convert dataframe into HTML format, add bootstrap
     return df.to_html(classes="table table-striped")
-
-
-# In[24]:
-
 
 def hemispheres(browser):
     url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
@@ -138,18 +117,7 @@ def hemispheres(browser):
         return None, None
     return hemisphere_image_urls
 
-
-# In[25]:
-
-
 if __name__ == "__main__":
 
     # If running as script, print scraped data
     print(scrape_all())
-
-
-# In[ ]:
-
-
-
-
